@@ -1,4 +1,5 @@
 import { useQueryState } from "nuqs";
+import "./styles.css";
 
 export function Name() {
   const [name, setName] = useQueryState("name");
@@ -12,13 +13,20 @@ export function Name() {
   };
 
   return (
-    <div>
-      <div>
-        <input type="text" value={name ?? ""} onChange={handleNameChange} />
+    <div className="container">
+      <h3 className="container-title">名前</h3>
+      <div className="input-group">
+        <input
+          type="text"
+          value={name ?? ""}
+          onChange={handleNameChange}
+          className="input"
+          placeholder="名前を入力してください"
+        />
       </div>
-      <div>
-        <button onClick={handleNameClear}>name をクリアするよ</button>
-      </div>
+      <button onClick={handleNameClear} className="button">
+        名前をクリア
+      </button>
     </div>
   );
 }

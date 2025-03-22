@@ -1,4 +1,5 @@
 import { parseAsInteger, useQueryState } from "nuqs";
+import "./styles.css";
 
 export function Counts() {
   const [count, setCount] = useQueryState(
@@ -6,17 +7,25 @@ export function Counts() {
     parseAsInteger.withDefault(0)
   );
   const handleCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCount(e.target.value);
+    const value = e.target.value === "" ? null : parseInt(e.target.value);
+    setCount(value);
   };
 
   return (
-    <div>
-      <div className="Input">
-        <input type="text" value={count ?? ""} onChange={handleCountChange} />
+    <div className="container">
+      <h3 className="container-title">カウント</h3>
+      <div className="input-group">
+        <input
+          type="number"
+          value={count ?? ""}
+          onChange={handleCountChange}
+          className="input"
+          placeholder="数値を入力してください"
+        />
       </div>
-      <div className="ClearButton">
-        <button onClick={() => setCount(null)}>count をクリアするよ</button>
-      </div>
+      <button onClick={() => setCount(null)} className="button">
+        カウントをクリア
+      </button>
     </div>
   );
 }

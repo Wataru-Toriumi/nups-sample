@@ -1,4 +1,5 @@
 import { parseAsFloat, useQueryStates } from "nuqs";
+import "./styles.css";
 
 export function Coordinates() {
   const [coordinates, setCoordinates] = useQueryStates(
@@ -19,14 +20,15 @@ export function Coordinates() {
   };
 
   return (
-    <div>
-      <div className="Text">
-        <p>lat: {coordinates.lat}</p>
-        <p>lng: {coordinates.lng}</p>
+    <div className="container">
+      <h3 className="container-title">座標</h3>
+      <div className="text">
+        <p>緯度: {coordinates.lat.toFixed(4)}°</p>
+        <p>経度: {coordinates.lng.toFixed(4)}°</p>
       </div>
-      <div className="SearchButton">
-        <button onClick={handleSearch}>座標を変えるよ</button>
-      </div>
+      <button onClick={handleSearch} className="button">
+        新しい座標を生成
+      </button>
     </div>
   );
 }
